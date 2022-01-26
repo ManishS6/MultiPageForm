@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FormContext } from './FormContext';
+import Button from "@material-ui/core/Button";
 
 export default function Name(){
     const [form, setForm] = useContext(FormContext)
@@ -31,7 +32,13 @@ export default function Name(){
                 First Name: <input type="text" value={firstName} onSelect={updateFN} onChange={updateFN} placeholder='Elon'/> <br />
                 Last Name: <input type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder='Musk'/> <br />
             <Link to='/address'>
-                <h3>Go to Address</h3>
+                {/* <h3>Go to Address</h3> */}
+                <Button
+                color="primary"
+                variant="contained"
+                >
+                Next
+                </Button>
             </Link>
         </div>
     )
