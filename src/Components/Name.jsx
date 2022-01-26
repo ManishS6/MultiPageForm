@@ -7,11 +7,17 @@ export default function Name(){
     const [form, setForm] = useContext(FormContext)
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const updateFN = e => { setFirstName(e.target.value) }
-    const updateLN = e => { setLastName(e.target.value) }
-    const addName = e => {
-        e.preventDefault()
-        var updatedForm = {firstName: firstName, lastName: lastName}
+    const updateFN = e => { 
+        setFirstName(e.target.value) 
+        var updatedForm = {firstName: firstName}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    }
+    const updateLN = e => { 
+        setLastName(e.target.value) 
+        var updatedForm = {lastName: lastName}
         setForm(form => ({
             ...form,
             ...updatedForm
@@ -21,11 +27,9 @@ export default function Name(){
     return(
         <div>
             <h2>This is name</h2>
-            <form onSubmit={addName}>
-                First Name: <input type="text" value={firstName} onChange={updateFN} placeholder='Elon'/> <br />
-                Last Name: <input type="text" value={lastName} onChange={updateLN} placeholder='Musk'/> <br />
-                <button>Submit</button>
-            </form>
+            {/* <form onSubmit={addName}> */}
+                First Name: <input type="text" value={firstName} onSelect={updateFN} onChange={updateFN} placeholder='Elon'/> <br />
+                Last Name: <input type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder='Musk'/> <br />
             <Link to='/address'>
                 <h3>Go to Address</h3>
             </Link>

@@ -6,11 +6,17 @@ export default function Contact(){
     const [form, setForm] = useContext(FormContext)
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
-    const updatePhone = e => { setPhone(e.target.value) }
-    const updateEmail = e => { setEmail(e.target.value) }
-    const addContact = e => {
-        e.preventDefault()
-        var updatedForm = {phone: phone, email: email}
+    const updatePhone = e => { 
+        setPhone(e.target.value) 
+        var updatedForm = {phone: phone}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    }
+    const updateEmail = e => { 
+        setEmail(e.target.value) 
+        var updatedForm = {email: email}
         setForm(form => ({
             ...form,
             ...updatedForm
@@ -19,11 +25,8 @@ export default function Contact(){
     return(
         <div>
             <h2>This is Contact.</h2>
-            <form onSubmit={addContact}>
-                Phone: <input type="text" value={phone} onChange={updatePhone} placeholder='+19876543211'/> <br />
-                Email: <input type="text" value={email} onChange={updateEmail} placeholder='elon@musk.com'/> <br />
-                <button>Submit</button>
-            </form>
+                Phone: <input type="text" value={phone} onSelect={updatePhone} onChange={updatePhone} placeholder='+19876543211'/> <br />
+                Email: <input type="text" value={email} onSelect={updateEmail} onChange={updateEmail} placeholder='elon@musk.com'/> <br />
             <Link to='/address'>
                 <h3>Back to Address</h3>
             </Link>
