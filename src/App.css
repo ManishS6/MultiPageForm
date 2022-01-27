@@ -1,3 +1,19 @@
+.stars{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.star{
+  cursor: pointer;
+  transition: color 200ms;
+}
+
 .App {
   text-align: center;
 }

@@ -39,8 +39,8 @@ export default function Contact(){
                 Back
                 </Button>
             </Link>
-            <Link to='/review'>
-                {/* <h3>Go to Review</h3> */}
+            <Link to='/skills'>
+                {/* <h3>Go to Skills</h3> */}
                 <Button
                 color="primary"
                 variant="contained"

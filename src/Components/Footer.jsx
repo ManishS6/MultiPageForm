@@ -11,7 +11,7 @@ export default function Footer(){
         <div>
             <h2 style={navStyle}>This is Footer.</h2>
             {Object.entries(form).map(([key, value]) => (
-                <h3>{key} : {value} </h3>
+                <h3 key={value}>{key} : {value} </h3>
             ))}
         </div>
     )

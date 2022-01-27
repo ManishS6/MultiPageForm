@@ -1,11 +1,10 @@
 import {Link} from 'react-router-dom';
 import Button from "@material-ui/core/Button";
-
 export default function Review(){
     return(
         <div>
             <h3>This is Review.</h3>
-            <Link to='/Contact'>
+            <Link to='/summary'> <br />
                 {/* <h3>Back to Contact</h3> */}
                 <Button
                     color="secondary"
