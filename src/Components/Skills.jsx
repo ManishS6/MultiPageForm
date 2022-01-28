@@ -1,7 +1,7 @@
 import '../App.css'
 import { useState, useContext } from 'react';
 import { FormContext } from './FormContext';
-import { FaStar, FaPlusSquare } from 'react-icons/fa'
+import { FaStar, FaPlusSquare,FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 
@@ -65,15 +65,20 @@ export default function Skills() {
                                     key={k}
                                     alt={"start_" + k}
                                     src="https://www.freepnglogos.com/uploads/star-png/file-featured-article-star-svg-wikimedia-commons-8.png"
-                                    height="12px"
-                                    width="12px"
+                                    height="80px"
+                                    width="80px"
                                     {...((k + 1) > parseInt(skill.rating)) && { style: { filter: "grayscale(100%)" } }}
                                 />
-                            )} <button onClick={() => setSkills((skills) => {
-                                const newSkills = [...skills];
-                                newSkills.splice(i, 1);
-                                return newSkills
-                            })}>-</button>
+                            )} 
+                            <FaTrash 
+                                color='red'
+                                size={40}
+                                onClick={() => setSkills((skills) => {
+                                    const newSkills = [...skills];
+                                    newSkills.splice(i, 1);
+                                    return newSkills
+                                })}
+                            />
                         </li>
                     ))}
                 </ul>
