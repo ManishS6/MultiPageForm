@@ -1,39 +1,48 @@
 import {Link} from 'react-router-dom';
-import { useState, useContext,useEffect } from 'react';
+import { useState, useContext,useCallback } from 'react';
 import { FormContext } from './FormContext';
 import Button from "@material-ui/core/Button";
 import { List, ListItem } from '@material-ui/core'
 
 export default function Summary(){
-    const [selectItem, setSelectItem] = useState([]);
-    const [form, setForm] = useContext(FormContext)
+    // const [Summary, setSummary] = useState([]);
+    const [{Summary=[]}, setForm] = useContext(FormContext)
     const items = [
-        { name: 'Item 1' },
-        { name: 'Item 2' }
+        { name: 'I am Honest' },
+        { name: 'I am Trustworthy' },
+        { name: 'I respect everyone\' opinion' },
+        { name: 'I can work in a team' }
     ]
-    useEffect(() => {
-            var updatedForm = {Summary: selectItem}
+    
+    // TODO: FIX: this useEffect is in endless loop.
+    // useEffect(() => {
+    //     var updatedForm = {Summary: Summary}
+    //     setForm( form => ({
+    //         ...form,
+    //         ...updatedForm
+    //     }))
+    //     console.log(form)
+    //     } // also do I need a dependency array here?
+    // );
+    
+    const  handleChange = useCallback( (n)=> {
+        let index = Summary.indexOf(n.name);
+        if (index === -1) {
             setForm( form => ({
                 ...form,
-                ...updatedForm
+                ...{Summary:Summary.concat(n.name)}
             }))
-        },[form,selectItem,setForm]
-    );
-
-    function handleChange (n) {
-        let index = selectItem.indexOf(n.name)
-        if (index === -1) {
-            setSelectItem(selectItem.concat(n.name))
         } else {
-            setSelectItem(selectItem.filter(k => k !== n.name))
+            // const newArray  = Summary.filter(k => k !== n.name);
+            setForm( form => ({
+                ...form,
+                ...{Summary:Summary.filter(k => k !== n.name)}
+            }))
+            // setSummary([...newArray]);
         }
-    }
+    },[Summary, setForm])
     function buttonOnChange (n) {
-        if (selectItem.indexOf(n.name) === -1) {
-          return 'Add'
-        } else {
-          return 'Remove'
-        }
+        return Summary.indexOf(n.name) === -1 ? 'Add' : 'Remove'
     }
 
     return(
@@ -57,9 +66,6 @@ export default function Summary(){
                 )
                 })}
             </List>
-            <br />
-            <h3>{selectItem}</h3>
-            <br />
             <Link to='/skills'>
                 <Button
                     color="secondary"

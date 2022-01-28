@@ -12,7 +12,7 @@ export default function Address(){
     const [zip, setZip] = useState('');
     const updateAddress = e => { 
         setAddress(e.target.value)
-        var updatedForm = {address: address}
+        var updatedForm = {Address: address}
         setForm(form => ({
             ...form,
             ...updatedForm
@@ -20,7 +20,7 @@ export default function Address(){
     }
     const updateCity = e => { 
         setCity(e.target.value)
-        var updatedForm = {city: city}
+        var updatedForm = {City: city}
         setForm(form => ({
             ...form,
             ...updatedForm
@@ -28,7 +28,7 @@ export default function Address(){
     }
     const updateState = e => { 
         setState(e.target.value) 
-        var updatedForm = {state: state}
+        var updatedForm = {State: state}
         setForm(form => ({
             ...form,
             ...updatedForm
@@ -36,7 +36,7 @@ export default function Address(){
     }
     const updateZip = e => { 
         setZip(e.target.value)
-        var updatedForm = {zip: zip}
+        var updatedForm = {Zip: zip}
         setForm(form => ({
             ...form,
             ...updatedForm

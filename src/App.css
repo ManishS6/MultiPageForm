@@ -2,9 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  /* min-height: 50vh; */
 }
-
+input{
+  height:40px;
+  margin: 20px;
+  font-size: larger;
+  padding: 5px;
+}
 input[type="radio"] {
   display: none;
 }

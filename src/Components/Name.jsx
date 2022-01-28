@@ -10,7 +10,7 @@ export default function Name(){
     const [lastName, setLastName] = useState('');
     const updateFN = e => { 
         setFirstName(e.target.value) 
-        var updatedForm = {firstName: firstName}
+        var updatedForm = {'First Name': firstName}
         setForm(form => ({
             ...form,
             ...updatedForm
@@ -18,7 +18,7 @@ export default function Name(){
     }
     const updateLN = e => { 
         setLastName(e.target.value) 
-        var updatedForm = {lastName: lastName}
+        var updatedForm = {'Last Name': lastName}
         setForm(form => ({
             ...form,
             ...updatedForm

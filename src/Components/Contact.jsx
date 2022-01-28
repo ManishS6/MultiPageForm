@@ -10,7 +10,7 @@ export default function Contact(){
     const [email, setEmail] = useState('');
     const updatePhone = e => { 
         setPhone(e.target.value) 
-        var updatedForm = {phone: phone}
+        var updatedForm = {Phone: phone}
         setForm(form => ({
             ...form,
             ...updatedForm
@@ -18,7 +18,7 @@ export default function Contact(){
     }
     const updateEmail = e => { 
         setEmail(e.target.value) 
-        var updatedForm = {email: email}
+        var updatedForm = {Email: email}
         setForm(form => ({
             ...form,
             ...updatedForm
