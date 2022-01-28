@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 
 export default function Skills() {
-    const [form, setForm] = useContext(FormContext);
+    // const [{skills=[]}, setForm] = useContext(FormContext);
+    // const [form, setForm] = useContext(FormContext);
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [skills, setSkills] = useState([]);
@@ -18,14 +19,19 @@ export default function Skills() {
         e.preventDefault();
         var newSkill = { skill: skill, rating: rating }
         setSkills(skills.concat(newSkill))
+        // setForm( form => ({
+        //     ...form,
+        //     ...{Summary:Summary.filter(k => k !== n.name)}
+        // }))
         setRating(null)
         setSkill(null)
     }
-    const removeSkill = name => {
-        skills.filter(k => k !== name.skill)
-    }
+    // const removeSkill = name => {
+    //     skills.filter(k => k !== name.skill)
+    // }
     return (
         <div>
+            <h2>This is Skills.</h2>
             <div className='stars'>
                 <input type="text" name="skill" id="skill" value={skill} onChange={updateSkill} /> <br />
                 {/* creating array of 5 empty items and then mapping stars*/}

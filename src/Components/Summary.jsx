@@ -75,7 +75,7 @@ export default function Summary(){
                 Back
                 </Button>
             </Link>
-            <Link to='/review'>
+            <Link to='/extra'>
                 <Button
                 color="primary"
                 variant="contained"

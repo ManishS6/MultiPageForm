@@ -7,6 +7,7 @@ import Review from './Components/Review'
 import Footer from './Components/Footer'
 import Summary from './Components/Summary';
 import Skills from './Components/Skills';
+import Extra from './Components/Extra';
 
 import { FormProvider } from './Components/FormContext';
 
@@ -21,6 +22,7 @@ function App() {
               <Route path="/contact" exact element={<Contact/>}/>
               <Route path="/skills" exact element={<Skills/>}/>
               <Route path="/summary" exact element={<Summary/>}/>
+              <Route path="/extra" exact element={<Extra/>}/>
               <Route path="/review" exact element={<Review/>}/>
               {/* <Route path="/shop/:id" element={Item} /> */}
             </Routes>
