@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 
 export default function Skills(){
-    const [form, setForm] = useContext(FormContext)
+    const [form, setForm] = useContext(FormContext);
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [skills, setSkills] = useState([]);
@@ -60,7 +60,7 @@ export default function Skills(){
                 <ul>
                     {[...skills].map((skill,i)=>(
                        <li key={i}>
-                           {skill.skill}
+                           {skill.skill},{skill.rating}
                        </li> 
                     ))}
                 </ul>
