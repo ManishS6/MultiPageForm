@@ -43,6 +43,14 @@ input[type="radio"] {
       -ms-flex: 1;
           flex: 1;
   height: 100vh;
+  border: solid 3px black;
+}
+
+.App .left input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .App .right {
@@ -295,16 +303,5 @@ input[type="radio"] {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   left: 0;
-}
-
-.Basic, .Education {
-  border: solid 3px black;
-}
-
-.Basic input, .Education input {
-  padding: 12px 20px;
-  margin: 8px 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
 }
 /*# sourceMappingURL=App.css.map */

@@ -25,6 +25,12 @@ input[type="radio"] {
   .left {
     flex: 1;
     height: 100vh;
+    border: solid 3px black;
+    input{
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
   }
   .right {
     flex: 1;
@@ -295,14 +301,5 @@ input[type="radio"] {
   //       font-size: 1.5rem;
   //   }
   // }
-  }
 }
-
-.Basic,.Education{
-    border: solid 3px black;
-    input{
-      padding: 12px 20px;
-      margin: 8px 0;
-      box-sizing: border-box;
-    }
-} 
+}
