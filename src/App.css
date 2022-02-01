@@ -1,20 +1,306 @@
-.stars{
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* min-height: 50vh; */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-input{
-  height:40px;
-  margin: 20px;
-  font-size: larger;
-  padding: 5px;
-}
+
 input[type="radio"] {
   display: none;
 }
 
-.star{
+.star {
   cursor: pointer;
+  -webkit-transition: color 200ms;
   transition: color 200ms;
 }
+
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+}
+
+.App .left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100vh;
+}
+
+.App .right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: wheat;
+}
+
+.App .right .main-content {
+  min-height: 100vh;
+  width: 80%;
+  margin: 2rem auto;
+  display: -ms-grid;
+  display: grid;
+  /* -ms-grid-columns: (1fr)[7]; */
+      grid-template-columns: repeat(7, 1fr);
+}
+
+.App .right .left-section {
+  grid-column: span 2;
+  height: 100%;
+  background-color: #00324A;
+}
+
+.App .right .right-section {
+  grid-column: span 5;
+  background-color: #f7f7f7;
+  height: 100%;
+}
+
+.App .right .left-content {
+  padding: 2rem 3rem;
+}
+
+.App .right .profile {
+  width: 100%;
+  border-bottom: 1px solid #002333;
+}
+
+.App .right .image {
+  width: 100%;
+  text-align: center;
+}
+
+.App .right .profile img {
+  width: 100%;
+  border-radius: 50%;
+  border: 8px solid #002333;
+}
+
+.App .right .name {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1.2rem 0;
+}
+
+.App .right .career {
+  font-size: 1.2rem;
+  color: #94D9EA;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 1rem;
+}
+
+.App .right .main-title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #f7f7f7ec;
+  padding-top: 3rem;
+}
+
+.App .right .contact-info ul {
+  padding-top: 2rem;
+}
+
+.App .right .contact-info ul li {
+  padding: .4rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #718096;
+}
+
+.App .right .contact-info ul li i {
+  padding-right: 1rem;
+  font-size: 1.2rem;
+  color: #2D9CDB;
+}
+
+.App .right .skills-section ul {
+  padding-top: 2rem;
+}
+
+.App .right .skills-section ul li {
+  display: -ms-grid;
+  display: grid;
+  /* -ms-grid-columns: (1fr)[2]; */
+      grid-template-columns: repeat(2, 1fr);
+  padding: .4rem 0;
+}
+
+.App .right .progress-bar {
+  width: 100%;
+  height: .4rem;
+  background-color: #2f81ed5b;
+  position: relative;
+  border-radius: 12px;
+}
+
+.App .right .progress {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background-color: #2D9CDB;
+  border-radius: 12px;
+}
+
+.App .right .js-progress {
+  width: 70%;
+}
+
+.App .right .ps-progress {
+  width: 90%;
+}
+
+.App .right .j-progress {
+  width: 85%;
+}
+
+.App .right .c-progress {
+  width: 40%;
+}
+
+.App .right .n-progress {
+  width: 63%;
+}
+
+.App .right .w-progress {
+  width: 78%;
+}
+
+.App .right .skill-title {
+  text-transform: uppercase;
+  color: #f7f7f7;
+  font-size: 1rem;
+}
+
+.App .right .sub-title {
+  padding-top: 2rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #f7f7f7;
+}
+
+.App .right .sub-para {
+  color: #ccc;
+  padding: .4rem 0;
+}
+
+.App .right .references-section li {
+  color: #ccc;
+  padding: .2rem 0;
+}
+
+.App .right .references-section li i {
+  padding-right: .5rem;
+  font-size: 1.2rem;
+  color: #2D9CDB;
+}
+
+.App .right .right-main-content {
+  padding: 2rem 3rem;
+}
+
+.App .right .right-title {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #2F80ED;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.App .right .right-title::after {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: .2rem;
+  background-color: #ccc;
+  border-radius: 12px;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.App .right .para {
+  line-height: 1.6rem;
+  color: #718096;
+  font-size: 1.1rem;
+}
+
+.App .right .sect {
+  padding-bottom: 2rem;
+}
+
+.App .right .timeline {
+  display: -ms-grid;
+  display: grid;
+  /* -ms-grid-columns: (1fr)[2]; */
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.App .right .tl-title {
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  color: #002333;
+  text-transform: uppercase;
+}
+
+.App .right .tl-title-2 {
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  color: #2D9CDB;
+  text-transform: uppercase;
+}
+
+.App .right .tl-content {
+  border-left: 1px solid #ccc;
+  padding-left: 2rem;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.App .right .tl-title-2::before {
+  content: "";
+  position: absolute;
+  width: .7rem;
+  height: .7rem;
+  background-color: #2D9CDB;
+  border-radius: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 0;
+}
+
+.Name input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/*# sourceMappingURL=App.css.map */
