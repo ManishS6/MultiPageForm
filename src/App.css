@@ -58,7 +58,7 @@ input[type="radio"] {
   margin: 2rem auto;
   display: -ms-grid;
   display: grid;
-  /* -ms-grid-columns: (1fr)[7]; */
+  -ms-grid-columns: (1fr)[7];
       grid-template-columns: repeat(7, 1fr);
 }
 
@@ -148,7 +148,7 @@ input[type="radio"] {
 .App .right .skills-section ul li {
   display: -ms-grid;
   display: grid;
-  /* -ms-grid-columns: (1fr)[2]; */
+  -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
   padding: .4rem 0;
 }
@@ -260,7 +260,7 @@ input[type="radio"] {
 .App .right .timeline {
   display: -ms-grid;
   display: grid;
-  /* -ms-grid-columns: (1fr)[2]; */
+  -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
 }
 
@@ -297,7 +297,11 @@ input[type="radio"] {
   left: 0;
 }
 
-.Name input {
+.Basic, .Education {
+  border: solid 3px black;
+}
+
+.Basic input, .Education input {
   padding: 12px 20px;
   margin: 8px 0;
   -webkit-box-sizing: border-box;

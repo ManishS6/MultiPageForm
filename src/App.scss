@@ -29,6 +29,7 @@ input[type="radio"] {
   .right {
     flex: 1;
     background-color: wheat;
+    // Resume CSS
     // TODO: fix css to fit in the page
     .main-content{
       min-height: 100vh;
@@ -297,8 +298,11 @@ input[type="radio"] {
   }
 }
 
-.Name input{
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
+.Basic,.Education{
+    border: solid 3px black;
+    input{
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+} 
