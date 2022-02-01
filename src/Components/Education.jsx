@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FormContext } from './FormContext';
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import '../App.css'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -14,6 +14,24 @@ export default function Address(){
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const updateFN = e => { 
+        setFirstName(e.target.value) 
+        var updatedForm = {firstName: firstName}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    }
+    const updateLN = e => { 
+        setLastName(e.target.value) 
+        var updatedForm = {lastName: lastName}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    }
     const updateAddress = e => { 
         setAddress(e.target.value)
         var updatedForm = {Address: address}
@@ -73,86 +91,75 @@ export default function Address(){
     //     </div>
     // )
     return(
-        <div className='Name left'>
+        <div className='Education left'>
                 <Form>
                 <Container >
                     <Row>
                         <Col style={{display: 'flex', justifyContent: 'center', color:'Black', fontFamily:'Pacifico'}}>
-                            <h2>Basic Details</h2>
+                            <h2>Education Details</h2>
                         </Col>
                     </Row>
                     <Row>
                         <Col style={{display: 'flex', justifyContent: 'center'}}>
-                            <h5>If these details are not correct employers wont be able to contact you!</h5>
+                            <h5>Where did you goto College?</h5>
                         </Col>
                     </Row>
                     <br />
                     <Row>
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" value={firstName} onSelect={updateFN} onChange={updateFN} placeholder="Elon" maxLength={10}/>
+                                <Form.Label>College Name</Form.Label>
+                                <Form.Control type="text" value={firstName} onSelect={updateFN} onChange={updateFN} placeholder="VIT" maxLength={10}/>
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Musk" maxLength={10}/>
+                                <Form.Label>College Location</Form.Label>
+                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Chennai" maxLength={10}/>
                             </Form.Group>    
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col xs={6}>
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 {/* FIX CONTROL */}
-                                <Form.Label>Profession</Form.Label>
-                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Full Stack Developer" maxLength={10}/>
+                                <Form.Label>Degree Type</Form.Label>
+                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Bachelor's of Technology" maxLength={10}/>
                             </Form.Group>  
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6}>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                {/* FIX CONTROL */}
+                                <Form.Label>Stream</Form.Label>
+                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="CSE" maxLength={10}/>
+                            </Form.Group>  
+                        </Col>
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 {/* FIX CONTROL */}
-                                <Form.Label>City</Form.Label>
-                                <Form.Control type="text" value={firstName} onSelect={updateFN} onChange={updateFN} placeholder="New Delhi" maxLength={10}/>
+                                <Form.Label>Start Date</Form.Label>
+                                <Form.Control type="text" value={firstName} onSelect={updateFN} onChange={updateFN} placeholder="01/08/2019" maxLength={10}/>
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 {/* FIX CONTROL */}
-                                <Form.Label>State</Form.Label>
-                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Delhi" maxLength={10}/>
-                            </Form.Group>    
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
-                                {/* FIX CONTROL */}
-                                <Form.Label>Zip</Form.Label>
-                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="600127" maxLength={10}/>
+                                <Form.Label>Graduation Date</Form.Label>
+                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="31/03/2023" maxLength={10}/>
                             </Form.Group>    
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                {/* FIX CONTROL */}
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" value={firstName} onSelect={updateFN} onChange={updateFN} placeholder="example@gmail.com" maxLength={10}/>
-                            </Form.Group>
+                        <Col style={{display: 'flex', justifyContent: 'start'}}>
+                            <Link to='/'>
+                                <Button variant='warning'> Back </Button>
+                            </Link>
                         </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
-                                {/* FIX CONTROL */}
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Password" maxLength={10}/>
-                            </Form.Group>    
-                        </Col>
-                    </Row>
-                    <Row>
                         <Col style={{display: 'flex', justifyContent: 'end'}}>
-                            <Link to='/page/education'>
-                                <Button variant="primary"> Next </Button>
+                            <Link to='/contact'>
+                                <Button variant='primary'> Next </Button>
                             </Link>
                         </Col>
                     </Row>
