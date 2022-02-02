@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Basic from './Components/Basic'
 import Education from './Components/Education'
-import Contact from './Components/Contact'
+import Job from './Components/Job'
 import Review from './Components/Review'
 import Resume from './Components/Resume'
 import Summary from './Components/Summary';
@@ -19,12 +19,11 @@ function App() {
             <Routes >  
               <Route path="/" exact element={<Basic />}/>
               <Route path="/page/education" element={<Education/>}/>
-              <Route path="/contact" exact element={<Contact/>}/>
-              <Route path="/skills" exact element={<Skills/>}/>
-              <Route path="/summary" exact element={<Summary/>}/>
-              <Route path="/extra" exact element={<Extra/>}/>
-              <Route path="/review" exact element={<Review/>}/>
-              {/* <Route path="/shop/:id" element={Item} /> */}
+              <Route path="/page/job" exact element={<Job/>}/>
+              <Route path="/page/summary" exact element={<Summary/>}/>
+              <Route path="/page/skills" exact element={<Skills/>}/>
+              <Route path="/page/extra" exact element={<Extra/>}/>
+              <Route path="/page/review" exact element={<Review/>}/>
             </Routes>
             <Resume/>
           </Router>

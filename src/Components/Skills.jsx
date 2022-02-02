@@ -3,8 +3,12 @@ import { useState, useContext } from 'react';
 import { FormContext } from './FormContext';
 import { FaStar, FaPlusSquare,FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
-import Button from "@material-ui/core/Button";
-
+// import Button from "@material-ui/core/Button";
+import '../App.css'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Card from 'react-bootstrap/Card'
+import {Container,Row,Col} from 'react-bootstrap';
 export default function Skills() {
     // const [{skills=[]}, setForm] = useContext(FormContext);
     // const [form, setForm] = useContext(FormContext);
@@ -30,52 +34,87 @@ export default function Skills() {
     //     skills.filter(k => k !== name.skill)
     // }
     return (
-        <div>
-            <h2>This is Skills.</h2>
-            <div className='stars'>
-                <input type="text" name="skill" id="skill" value={skill} onChange={updateSkill} /> <br />
-                {/* creating array of 5 empty items and then mapping stars*/}
-                <form onSubmit={update}>
-                    {[...Array(5)].map((star, i) => {
-                        const ratingValue = i + 1;
-                        return (
-                            <label>
-                                <input
-                                    type="radio"
-                                    name="rating"
-                                    value={ratingValue}
-                                    onClick={() => { setRating(ratingValue) }}
-                                />
+        <div className='left'>
+            <Container>
+                <Row>
+                    <Col style={{display: 'flex', justifyContent: 'center', color:'Black', fontFamily:'Pacifico'}}>
+                        <h2>Skills</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col style={{display: 'flex', justifyContent: 'center'}}>
+                        <h5>What skills do you have?</h5>
+                    </Col>
+                </Row>
+                <Row>
+                    <div className='stars' style={{display:'flex',alignItems:'center'}}>
+                        <Col xs={6}>
+                            {/* <input type="text" name="skill" id="skill" value={skill} onChange={updateSkill} /> */}
+                            <Form.Group className="mb-3" controlId="formSkill">
+                                <Form.Control type="text" value={skill} onChange={updateSkill} placeholder="Java" maxLength={10}/>
+                            </Form.Group>
+
+                        </Col>
+                        <br />
+                        <Col xs={6} style={{display:'flex',alignItems:'center'}}>
+                            {/* creating array of 5 empty items and then mapping stars*/}
+                            <form onSubmit={update}>
+                                {[...Array(5)].map((star, i) => {
+                                    const ratingValue = i + 1;
+                                    return (
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="rating"
+                                                value={ratingValue}
+                                                onClick={() => { setRating(ratingValue) }}
+                                                />
+                                            <FaStar
+                                                size={50}
+                                                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                                onMouseOver={() => setHover(ratingValue)}
+                                                onMouseOut={() => setHover(null)}
+                                                />
+                                        </label>
+                                    )
+                                })}
+                                <FaPlusSquare
+                                    color='green'
+                                    size={40}
+                                    onClick={update}
+                                    />
+                            </form>
+                        </Col>
+                    </div>
+                </Row>
+                <br />
+                <Row>
+                    <h3>Selected Skills:</h3>
+                </Row>
+                <br />
+                {[...skills].map((skill, i) => (
+                    <Row style={{margin:'4px'}}>
+                        <Card key={i} style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+                            <Col xs={6}>
+                                {skill.skill}
+                            </Col>
+                            <Col xs={6}>
+                            {[...Array(parseInt(skill.rating))].map((_, k) =>
                                 <FaStar
-                                    size={80}
-                                    color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-                                    onMouseOver={() => setHover(ratingValue)}
-                                    onMouseOut={() => setHover(null)}
-                                />
-                            </label>
-                        )
-                    })}
-                    <FaPlusSquare
-                        color='green'
-                        size={40}
-                        onClick={update}
-                    />
-                </form>
-            </div>
-            <div className="listSkills">
-                <ul>
-                    {[...skills].map((skill, i) => (
-                        <li key={i}>
-                            {skill.skill}&nbsp;&nbsp;{[...Array(5)].map((_, k) =>
-                                <img
                                     key={k}
-                                    alt={"start_" + k}
-                                    src="https://www.freepnglogos.com/uploads/star-png/file-featured-article-star-svg-wikimedia-commons-8.png"
-                                    height="80px"
-                                    width="80px"
-                                    {...((k + 1) > parseInt(skill.rating)) && { style: { filter: "grayscale(100%)" } }}
+                                    size={50}
+                                    color={"#ffc107"}
                                 />
                             )} 
+                            {
+                                (5-parseInt(skill.rating))>0 && [...Array(parseInt(5-skill.rating))].map((_, k) =>
+                                    <FaStar
+                                        key={k}
+                                        size={50}
+                                        color={"#e4e5e9"}
+                                    />
+                                )
+                            }
                             <FaTrash 
                                 color='red'
                                 size={40}
@@ -85,27 +124,24 @@ export default function Skills() {
                                     return newSkills
                                 })}
                             />
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <Link to='/contact'>
-                <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginRight: "1rem" }}
-                >
-                    Back
-                </Button>
-            </Link>
-            <Link to='/summary'>
-                <Button
-                    color="primary"
-                    variant="contained"
-                >
-                    Next
-                </Button>
-            </Link>
+                            </Col>
+                        </Card>
+                    </Row>
+                ))}
+                <br />
+                <Row>
+                    <Col style={{display: 'flex', justifyContent: 'start'}}>
+                        <Link to='/page/summary'>
+                            <Button variant='warning'> Back </Button>
+                        </Link>
+                    </Col>
+                    <Col style={{display: 'flex', justifyContent: 'end'}}>
+                        <Link to='/page/extra'>
+                            <Button variant='primary'> Next </Button>
+                        </Link>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }

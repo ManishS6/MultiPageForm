@@ -1,26 +1,48 @@
 // import { useState } from 'react';
 import { useContext } from 'react';
 import { FormContext } from './FormContext';
+
 export default function Footer(){
     const navStyle = {
         background:'black',
         color:'white'
         
       };
-    const [form] = useContext(FormContext)
+    const [{
+        firstName="First",
+        lastName="Last",
+        profession="Full Stack Developer",
+        city="Faridabad",
+        state="Haryana",
+        zip="121001",
+        email="manishswami.dev@gmail.com",
+        phone="+919876543210",
+        jobTitle="Open Source Contributor",
+        jobEmployer="Github",
+        jobCity="remote",
+        jobState="",
+        jobStart="01-05-2020",
+        jobEnd="01-12-2022",
+        collegeName="VIT",
+        collegeLocation="Chennai",
+        degree="B.Tech",
+        stream="CSE",
+        degreeStart="07-07-2019",
+        degreeEnd="15-03-2023"
+    },setForm] = useContext(FormContext)
     return(
         <div className='right'>
-            <h2 style={navStyle}>&nbsp;&nbsp;&nbsp;Final Resume</h2>
+            {/* <h2 style={navStyle}>&nbsp;&nbsp;&nbsp;Final Resume</h2> */}
             {/* {Object.entries(form).map(([key, value]) => (
                 <h3 key={value}>{key} : {value} </h3>
             ))} */}
-            {/* <section className="left-section">
+            <section className="left-section">
                 <div className="left-content">
                     <div className="profile">
                         <div className="image">
                             <img src="/avatar.jpg" alt="" / >
                         </div>
-                        <h2 className="name">Lorem Dola Ipsum</h2>
+                        <h2 className="name">{firstName+' '+lastName}</h2>
                         <p className="career">Software Engineer</p>
                     </div>
                     <div className="contact-info">
@@ -326,7 +348,7 @@ export default function Footer(){
                     </div>
                 </section>
                 </div>
-            </section> */}
+            </section>
         </div>
     )
 }

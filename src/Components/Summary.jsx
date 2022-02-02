@@ -1,8 +1,11 @@
 import {Link} from 'react-router-dom';
 import { useState, useContext,useCallback } from 'react';
 import { FormContext } from './FormContext';
-import Button from "@material-ui/core/Button";
 import { List, ListItem } from '@material-ui/core'
+import '../App.css'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import {Container,Row,Col} from 'react-bootstrap';
 
 export default function Summary(){
     // const [Summary, setSummary] = useState([]);
@@ -13,17 +16,6 @@ export default function Summary(){
         { name: 'I respect everyone\' opinion' },
         { name: 'I can work in a team' }
     ]
-    
-    // TODO: FIX: this useEffect is in endless loop.
-    // useEffect(() => {
-    //     var updatedForm = {Summary: Summary}
-    //     setForm( form => ({
-    //         ...form,
-    //         ...updatedForm
-    //     }))
-    //     console.log(form)
-    //     } // also do I need a dependency array here?
-    // );
     
     const  handleChange = useCallback( (n)=> {
         let index = Summary.indexOf(n.name);
@@ -46,43 +38,52 @@ export default function Summary(){
     }
 
     return(
-        <div>
-            <h3>This is Summary</h3>
-            <List>
-                {items.map(n => {
-                return (
-                    <ListItem key={n.name} id='list'>
-                        {n.name}
-                    <Button
-                        color={buttonOnChange(n) === 'Remove' ? 'secondary' : 'primary'}
-                        variant='contained'
-                        style={{ marginRight: '1rem' }}
-                        className='Add'
-                        onClick={() => handleChange(n)}
-                    >
-                        {buttonOnChange(n)}
-                    </Button>
-                    </ListItem>
-                )
-                })}
-            </List>
-            <Link to='/skills'>
-                <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginRight: "1rem" }}
-                >
-                Back
-                </Button>
-            </Link>
-            <Link to='/extra'>
-                <Button
-                color="primary"
-                variant="contained"
-                >
-                Next
-                </Button>
-            </Link>
+        <div className='left'>
+            <Container style={{margin:'5px'}}>
+                <Row>
+                    <Col style={{display: 'flex', justifyContent: 'center', color:'Black', fontFamily:'Pacifico'}}>
+                        <h2>Summary Details</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col style={{display: 'flex', justifyContent: 'center'}}>
+                        <h5>What do you want to be written inside the About section?</h5>
+                    </Col>
+                </Row>
+                <br />
+                <Row>
+                    <List style={{border:'2px solid black',display:'flex',flexDirection:'column',width:'98%'}}>
+                        {items.map(n => {
+                        return (
+                            <ListItem key={n.name} id='list'>
+                                <Button
+                                    variant={buttonOnChange(n) === 'Remove' ? 'danger' : 'success'}
+                                    style={{ marginRight: '1rem' }}
+                                    className='Add'
+                                    onClick={() => handleChange(n)}
+                                >
+                                    {buttonOnChange(n)}
+                                </Button>
+                                {n.name}
+                            </ListItem>
+                        )
+                        })}
+                    </List>
+                </Row>
+                <br />
+                <Row>
+                    <Col style={{display: 'flex', justifyContent: 'start'}}>
+                        <Link to='/page/job'>
+                            <Button variant='warning'> Back </Button>
+                        </Link>
+                    </Col>
+                    <Col style={{display: 'flex', justifyContent: 'end'}}>
+                        <Link to='/page/skills'>
+                            <Button variant='primary'> Next </Button>
+                        </Link>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }
