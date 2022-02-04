@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom';
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useState,useEffect,useContext } from 'react';
 import { FormContext } from './FormContext';
 import '../App.css'
 import Button from 'react-bootstrap/Button'
@@ -8,6 +7,13 @@ import Form from 'react-bootstrap/Form'
 import {Container,Row,Col} from 'react-bootstrap';
 
 export default function Contact(){
+    useEffect(()=>{
+        var updatedForm = {step: 2}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    },[])
     var [{jobTitle='',jobEmployer='',jobCity='',jobState='',jobStart='',jobEnd=''}, setForm] = useContext(FormContext)
     const updateJT = e => { 
         const val=e.target.value;

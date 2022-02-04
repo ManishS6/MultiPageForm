@@ -1,15 +1,22 @@
 import {Link} from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useContext } from 'react';
 import { FormContext } from './FormContext';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import {Container,Row,Col} from 'react-bootstrap';
-// import Button from "@material-ui/core/Button";
 import '../App.css';
-
+import Header from './Header';
+import avatar from './avatar.jpg'
 export default function Name(){
     var [{firstName='',lastName='',profession='',city='',state='',zip='',email='',phone=''}, setForm] = useContext(FormContext)
+    useEffect(()=>{
+        var updatedForm = {step: 0}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    },[])
     const updateFN = e => { 
         const val=e.target.value;
         var updatedForm = {firstName: val}
@@ -77,7 +84,8 @@ export default function Name(){
 
     return(
         <div className='Basic left'>
-                <Form>
+            {/* <Header /> */}
+            <Form>
                 <Container >
                     <Row>
                         <Col style={{display: 'flex', justifyContent: 'center', color:'Black', fontFamily:'Pacifico'}}>
@@ -91,25 +99,37 @@ export default function Name(){
                     </Row>
                     <br />
                     <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formFirstName">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" value={firstName} onChange={updateFN} placeholder="Elon" maxLength={10}/>
-                            </Form.Group>
+                        <Col xs={3} style={{width:'fit-content'}}>
+                            <Row style={{margin:'3px'}}>
+                                <img src={avatar} alt="avatar" height={200} style={{borderRadius:'2%',border:'2px solid black'}}/>
+                            </Row>
+                            <Row style={{margin:'3px'}}>
+                                <Button variant="primary"> UPLOAD PHOTO </Button>
+                            </Row>
                         </Col>
                         <Col>
-                            <Form.Group className="mb-3" controlId="formLastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Musk" maxLength={10}/>
-                            </Form.Group>    
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formProfession">
-                                <Form.Label>Profession</Form.Label>
-                                <Form.Control type="text" value={profession} onChange={updateP} placeholder="Full Stack Developer"/>
-                            </Form.Group>  
+                            <Row>
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="formFirstName">
+                                        <Form.Label>First Name</Form.Label>
+                                        <Form.Control type="text" value={firstName} onChange={updateFN} placeholder="Elon" maxLength={10}/>
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="formLastName">
+                                        <Form.Label>Last Name</Form.Label>
+                                        <Form.Control type="text" value={lastName} onSelect={updateLN} onChange={updateLN} placeholder="Musk" maxLength={10}/>
+                                    </Form.Group>    
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="formProfession">
+                                        <Form.Label>Profession</Form.Label>
+                                        <Form.Control type="text" value={profession} onChange={updateP} placeholder="Full Stack Developer"/>
+                                    </Form.Group>  
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                     <Row>
@@ -154,7 +174,7 @@ export default function Name(){
                         </Col>
                     </Row>
                 </Container>
-                </Form>
+            </Form>
         </div>
     )
 }

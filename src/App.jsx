@@ -1,5 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { FormProvider } from './Components/FormContext';
 import Basic from './Components/Basic'
 import Education from './Components/Education'
 import Job from './Components/Job'
@@ -8,14 +9,15 @@ import Resume from './Components/Resume'
 import Summary from './Components/Summary';
 import Skills from './Components/Skills';
 import Extra from './Components/Extra';
-
-import { FormProvider } from './Components/FormContext';
+import Test from './Components/Test';
+import Header from './Components/Header';
 
 function App() {
   return (
       <FormProvider>
         <div className='App'>
-          <Router>  
+          <Header />  
+          <Router>
             <Routes >  
               <Route path="/" exact element={<Basic />}/>
               <Route path="/page/education" element={<Education/>}/>
@@ -24,6 +26,7 @@ function App() {
               <Route path="/page/skills" exact element={<Skills/>}/>
               <Route path="/page/extra" exact element={<Extra/>}/>
               <Route path="/page/review" exact element={<Review/>}/>
+              <Route path="/page/test" exact element={<Test/>}/>
             </Routes>
             <Resume/>
           </Router>

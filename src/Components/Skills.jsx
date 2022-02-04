@@ -1,5 +1,5 @@
 import '../App.css'
-import { useState, useContext } from 'react';
+import { useState, useContext,useEffect } from 'react';
 import { FormContext } from './FormContext';
 import { FaStar, FaPlusSquare,FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
@@ -10,11 +10,16 @@ import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 import {Container,Row,Col} from 'react-bootstrap';
 export default function Skills() {
-    // const [{skills=[]}, setForm] = useContext(FormContext);
-    // const [form, setForm] = useContext(FormContext);
+    const [{skills=[]}, setForm] = useContext(FormContext);
+    useEffect(()=>{
+        var updatedForm = {step: 4}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    },[setForm])
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
-    const [skills, setSkills] = useState([]);
     const [skill, setSkill] = useState(null);
     const updateSkill = e => {
         setSkill(e.target.value)
@@ -22,17 +27,19 @@ export default function Skills() {
     const update = e => {
         e.preventDefault();
         var newSkill = { skill: skill, rating: rating }
-        setSkills(skills.concat(newSkill))
-        // setForm( form => ({
-        //     ...form,
-        //     ...{Summary:Summary.filter(k => k !== n.name)}
-        // }))
+        setForm( form => ({
+            ...form,
+            ...{skills:skills.concat(newSkill)}
+        }))
         setRating(null)
         setSkill(null)
     }
-    // const removeSkill = name => {
-    //     skills.filter(k => k !== name.skill)
-    // }
+    const removeSkill = i => {
+        setForm( form => ({
+            ...form,
+            ...{skills:skills.splice(i,1)}
+        }))
+    }
     return (
         <div className='left'>
             <Container>
@@ -118,11 +125,7 @@ export default function Skills() {
                             <FaTrash 
                                 color='red'
                                 size={40}
-                                onClick={() => setSkills((skills) => {
-                                    const newSkills = [...skills];
-                                    newSkills.splice(i, 1);
-                                    return newSkills
-                                })}
+                                onClick={(i) => removeSkill(i)}
                             />
                             </Col>
                         </Card>

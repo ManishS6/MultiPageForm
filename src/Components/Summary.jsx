@@ -1,14 +1,20 @@
 import {Link} from 'react-router-dom';
-import { useState, useContext,useCallback } from 'react';
+import { useContext,useCallback,useEffect } from 'react';
 import { FormContext } from './FormContext';
 import { List, ListItem } from '@material-ui/core'
 import '../App.css'
 import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import {Container,Row,Col} from 'react-bootstrap';
-
+import TextEditor from './TextEditor';
 export default function Summary(){
     // const [Summary, setSummary] = useState([]);
+    useEffect(()=>{
+        var updatedForm = {step: 3}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+    },[])
     const [{Summary=[]}, setForm] = useContext(FormContext)
     const items = [
         { name: 'I am Honest' },
@@ -51,24 +57,29 @@ export default function Summary(){
                     </Col>
                 </Row>
                 <br />
-                <Row>
-                    <List style={{border:'2px solid black',display:'flex',flexDirection:'column',width:'98%'}}>
-                        {items.map(n => {
-                        return (
-                            <ListItem key={n.name} id='list'>
-                                <Button
-                                    variant={buttonOnChange(n) === 'Remove' ? 'danger' : 'success'}
-                                    style={{ marginRight: '1rem' }}
-                                    className='Add'
-                                    onClick={() => handleChange(n)}
-                                >
-                                    {buttonOnChange(n)}
-                                </Button>
-                                {n.name}
-                            </ListItem>
-                        )
-                        })}
-                    </List>
+                <Row style={{border:'2px solid black',margin:'2px'}}>
+                    <Col>
+                        <List style={{display:'flex',flexDirection:'column',width:'98%'}}>
+                            {items.map(n => {
+                            return (
+                                <ListItem key={n.name} id='list'>
+                                    <Button
+                                        variant={buttonOnChange(n) === 'Remove' ? 'danger' : 'success'}
+                                        style={{ marginRight: '1rem' }}
+                                        className='Add'
+                                        onClick={() => handleChange(n)}
+                                    >
+                                        {buttonOnChange(n)}
+                                    </Button>
+                                    {n.name}
+                                </ListItem>
+                            )
+                            })}
+                        </List>
+                    </Col>
+                    <Col>
+                        <TextEditor />
+                    </Col>
                 </Row>
                 <br />
                 <Row>
