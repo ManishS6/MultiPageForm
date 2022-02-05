@@ -10,6 +10,20 @@ import Header from './Header';
 import avatar from './avatar.jpg'
 export default function Name(){
     var [{firstName='',lastName='',profession='',city='',state='',zip='',email='',phone=''}, setForm] = useContext(FormContext)
+    const [selectedFile, setSelectedFile] = useState();
+    const [isFilePicked, setIsFilePicked] = useState(false);
+
+    const changeHandler = e => {
+        setSelectedFile(e.target.files[0]);
+        setIsFilePicked(true);
+    }
+    
+    const handleSubmission = e => {
+        e.preventDefault()
+        setSelectedFile(null);
+        setIsFilePicked(false);
+    }
+
     useEffect(()=>{
         var updatedForm = {step: 0}
         setForm(form => ({
@@ -99,12 +113,18 @@ export default function Name(){
                     </Row>
                     <br />
                     <Row>
-                        <Col xs={3} style={{width:'fit-content'}}>
+                        <Col>
                             <Row style={{margin:'3px'}}>
-                                <img src={avatar} alt="avatar" height={200} style={{borderRadius:'2%',border:'2px solid black'}}/>
+                                <img src={!isFilePicked?avatar:selectedFile} alt="avatar" height={200} style={{borderRadius:'2%',border:'2px solid black'}}/>
                             </Row>
                             <Row style={{margin:'3px'}}>
-                                <Button variant="primary"> UPLOAD PHOTO </Button>
+                                {!isFilePicked && <input type="file" onChange={changeHandler} />}
+                                <Button 
+                                    variant={!isFilePicked? "primary":"danger"}
+                                    onClick={handleSubmission}
+                                > 
+                                    {!isFilePicked ? "UPLOAD PHOTO": "REMOVE PHOTO"} 
+                                </Button>
                             </Row>
                         </Col>
                         <Col>
