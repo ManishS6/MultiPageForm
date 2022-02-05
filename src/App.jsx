@@ -12,7 +12,7 @@ import Extra from './Components/Extra';
 import Test from './Components/Test';
 import Header from './Components/Header';
 
-function App() {
+export default function App() {
   return (
       <FormProvider>
         <div className='App'>
@@ -34,5 +34,3 @@ function App() {
       </FormProvider>
   );
 }
-
-export default App;
