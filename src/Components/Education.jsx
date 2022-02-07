@@ -8,6 +8,18 @@ import Form from 'react-bootstrap/Form'
 import {Container,Row,Col} from 'react-bootstrap';
 
 export default function Address(){
+    const stylish = {
+            padding: '10px 20px',
+            color: '#03e9f4',
+            fontSize: '16px',
+            textDecoration: 'none',
+            textTransform: 'uppercase',
+            overflow: 'hidden',
+            transition: '.5s',
+            marginTop:'5px',
+            letterSpacing: '4px',
+            background: 'black'
+    }
     useEffect(()=>{
         var updatedForm = {step: 1}
         setForm(form => ({
@@ -126,6 +138,15 @@ export default function Address(){
                         <Link to='/'>
                             <Button variant='warning'> Back </Button>
                         </Link>
+                    </Col>
+                    <Col>
+                        <a style={stylish} disabled href=" ">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Submit
+                        </a>
                     </Col>
                     <Col style={{display: 'flex', justifyContent: 'end'}}>
                         <Link to='/page/job'>

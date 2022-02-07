@@ -8,29 +8,59 @@ import {Container,Row,Col} from 'react-bootstrap';
 import '../App.css';
 import Header from './Header';
 import avatar from './avatar.jpg'
+import UploadForm from './UploadForm';
 export default function Name(){
-    var [{firstName='',lastName='',profession='',city='',state='',zip='',email='',phone=''}, setForm] = useContext(FormContext)
-    const [selectedFile, setSelectedFile] = useState();
-    const [isFilePicked, setIsFilePicked] = useState(false);
-
-    const changeHandler = e => {
-        setSelectedFile(e.target.files[0]);
-        setIsFilePicked(true);
-    }
+    var [{firstName='',lastName='',profession='',city='',state='',zip='',email='',phone='',isFilePicked=false}, setForm] = useContext(FormContext)
+    const [selectedFile, setSelectedFile] = useState(null);
+    // const [isFilePicked, setIsFilePicked] = useState(false);
+    // const changeHandler = e => {
+    //     setSelectedFile(e.target.files[0]);
+    //     localStorage.setItem('avatar',selectedFile);
+    //     setIsFilePicked(true);
+    // }
     
     const handleSubmission = e => {
         e.preventDefault()
+        localStorage.removeItem('recent-image')
         setSelectedFile(null);
-        setIsFilePicked(false);
+        var updatedForm = {isFilePicked: false}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+        // setIsFilePicked(false);
     }
-
+    var recentImage = localStorage.getItem('recent-image')
     useEffect(()=>{
         var updatedForm = {step: 0}
         setForm(form => ({
             ...form,
             ...updatedForm
         }))
-    },[])
+        if(localStorage.getItem('recent-image')){
+            setSelectedFile(localStorage.getItem('recent-image'))
+            // setIsFilePicked(true)
+            var updatedForm = {isFilePicked: true}
+            setForm(form => ({
+                ...form,
+                ...updatedForm
+            }))
+        }
+    },[recentImage])
+    const uploader = (file) =>{
+        const reader = new FileReader();
+        reader.addEventListener('load', ()=>{
+            localStorage.setItem('recent-image',reader.result)
+        })
+        reader.readAsDataURL(file);
+        setSelectedFile(recentImage);
+        var updatedForm = {isFilePicked: true}
+        setForm(form => ({
+            ...form,
+            ...updatedForm
+        }))
+        // setIsFilePicked(true)
+    }
     const updateFN = e => { 
         const val=e.target.value;
         var updatedForm = {firstName: val}
@@ -95,7 +125,7 @@ export default function Name(){
             ...updatedForm
         }))
     }
-
+    
     return(
         <div className='Basic left'>
             {/* <Header /> */}
@@ -111,14 +141,27 @@ export default function Name(){
                             <h5>If these details are not correct employers wont be able to contact you!</h5>
                         </Col>
                     </Row>
-                    <br />
+                    <hr />
                     <Row>
                         <Col>
                             <Row style={{margin:'3px'}}>
-                                <img src={!isFilePicked?avatar:selectedFile} alt="avatar" height={200} style={{borderRadius:'2%',border:'2px solid black'}}/>
+                                <div style={{width:'100%',textAlign:'center',padding:'10px'}} className="image">
+                                    <img 
+                                    src={
+                                        !isFilePicked
+                                        ?
+                                        avatar
+                                        :
+                                        localStorage.getItem('recent-image')||selectedFile
+                                        } 
+                                    alt="Profile" 
+                                    height={200} 
+                                    style={{width:'80%',borderRadius:"50%",border:'8px solid #002333'}}
+                                    />
+                                </div>
                             </Row>
                             <Row style={{margin:'3px'}}>
-                                {!isFilePicked && <input type="file" onChange={changeHandler} />}
+                                {!isFilePicked && <UploadForm uploader = {uploader}/>}
                                 <Button 
                                     variant={!isFilePicked? "primary":"danger"}
                                     onClick={handleSubmission}

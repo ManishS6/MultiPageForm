@@ -16,7 +16,7 @@ export default function Header(){
     return(
         <div>
             <Box sx={{ height:'100%',width: '100%' }}>
-                <Stepper style={{borderBottom:'2px solid black',display:'flex',flexDirection:'column',alignItems:'stretch',justifyContent:'stretch'}} activeStep={form.step} orientation="vertical" >
+                <Stepper style={{borderBottom:'2px solid black',display:'flex',flexDirection:'column',alignItems:'stretch',justifyContent:'stretch'}} activeStep={form.step} orientation="vertical">
                     {steps.map((label) => (
                         <Step key={label}>
                         <StepLabel>{label}</StepLabel>

@@ -110,13 +110,13 @@ export default function Contact(){
                         <Col>
                             <Form.Group className="mb-3" controlId="formJobStart">
                                 <Form.Label>Start Date</Form.Label>
-                                <Form.Control type="text" value={jobStart} onChange={updateJStart} placeholder="01/08/2019" maxLength={10}/>
+                                <Form.Control type="text" value={jobStart} onChange={updateJStart} placeholder="08-2019" maxLength={10}/>
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group className="mb-3" controlId="formJobEnd">
                                 <Form.Label>Graduation Date</Form.Label>
-                                <Form.Control type="text" value={jobEnd} onChange={updateJEnd} placeholder="31/03/2023" maxLength={10}/>
+                                <Form.Control type="text" value={jobEnd} onChange={updateJEnd} placeholder="03-2023" maxLength={10}/>
                             </Form.Group>    
                         </Col>
                     </Row>

@@ -1,5 +1,5 @@
 import '../App.css'
-import { useState, useContext,useEffect } from 'react';
+import { useState, useContext,useEffect,useRef } from 'react';
 import { FormContext } from './FormContext';
 import { FaStar, FaPlusSquare,FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
@@ -21,6 +21,8 @@ export default function Skills() {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [skill, setSkill] = useState(null);
+    const skillRef = useRef(null);
+
     const updateSkill = e => {
         setSkill(e.target.value)
     }
@@ -32,6 +34,7 @@ export default function Skills() {
             ...{skills:skills.concat(newSkill)}
         }))
         setRating(null)
+        skillRef.current.value = null;
         setSkill(null)
     }
     const removeSkill = i => {
@@ -58,7 +61,7 @@ export default function Skills() {
                         <Col xs={6}>
                             {/* <input type="text" name="skill" id="skill" value={skill} onChange={updateSkill} /> */}
                             <Form.Group className="mb-3" controlId="formSkill">
-                                <Form.Control type="text" value={skill} onChange={updateSkill} placeholder="Java" maxLength={10}/>
+                                <Form.Control type="text" ref={skillRef} value={skill} onChange={updateSkill} placeholder="Java" maxLength={10}/>
                             </Form.Group>
 
                         </Col>

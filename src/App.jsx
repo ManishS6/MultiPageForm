@@ -9,7 +9,7 @@ import Resume from './Components/Resume'
 import Summary from './Components/Summary';
 import Skills from './Components/Skills';
 import Extra from './Components/Extra';
-import Test from './Components/Test';
+import Test from './Components/_Test';
 import Header from './Components/Header';
 
 export default function App() {
