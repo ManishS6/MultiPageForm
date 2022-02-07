@@ -46,7 +46,7 @@ export default function Name(){
                 ...updatedForm
             }))
         }
-    },[recentImage])
+    },[localStorage.getItem('recent-image')])
     const uploader = (file) =>{
         const reader = new FileReader();
         reader.addEventListener('load', ()=>{

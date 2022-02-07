@@ -9,17 +9,19 @@ export default function Review(){
     return(
         <div className='left'>
             <Container>
-                <h3>This is Review.</h3>
-                <Link to='/summary'> <br />
-                    {/* <h3>Back to Contact</h3> */}
-                    <Button
-                        color="secondary"
-                        variant="contained"
-                        style={{ marginRight: "1rem" }}
-                    >
-                    Back
-                    </Button>
-                </Link>
+                <Row>
+                    <Col style={{display: 'flex', justifyContent: 'start'}}>
+                        <Link to='/page/extra'>
+                            <Button variant='warning'> Back </Button>
+                        </Link>
+                    </Col>
+                    <Col style={{display: 'flex', justifyContent: 'center'}}>
+                        <Button variant='primary'> Export JSON </Button>
+                    </Col>
+                    <Col style={{display: 'flex', justifyContent: 'end'}}>
+                        <Button variant='success'> Download PDF </Button>
+                    </Col>
+                </Row>
             </Container>
         </div>
     )

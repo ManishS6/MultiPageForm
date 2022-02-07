@@ -317,42 +317,6 @@ export default function Extra() {
                         </Col>
                     </div>
                     </Row>
-                    {/* {[...certificates].map((interest, i) => (
-                    <Row style={{margin:'4px'}}>
-                        <Card key={i} style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
-                            <Col xs={6}>
-                                {interest.interest}
-                            </Col>
-                            <Col xs={6}>
-                            {[...Array(parseInt(interest.rating))].map((_, k) =>
-                                <FaStar
-                                    key={k}
-                                    size={50}
-                                    color={"#ffc107"}
-                                />
-                            )} 
-                            {
-                                (5-parseInt(interest.rating))>0 && [...Array(parseInt(5-interest.rating))].map((_, k) =>
-                                    <FaStar
-                                        key={k}
-                                        size={50}
-                                        color={"#e4e5e9"}
-                                    />
-                                )
-                            }
-                            <FaTrash 
-                                color='red'
-                                size={40}
-                                onClick={() => setinterests((interests) => {
-                                    const newinterests = [...interests];
-                                    newinterests.splice(i, 1);
-                                    return newinterests
-                                })}
-                            />
-                            </Col>
-                        </Card>
-                    </Row>
-                    ))} */}
                 </>
                 :
                     <br />
@@ -366,7 +330,7 @@ export default function Extra() {
                     </Col>
                     <Col style={{display: 'flex', justifyContent: 'end'}}>
                         <Link to='/page/review'>
-                            <Button disabled variant='primary'> Next </Button>
+                            <Button variant='primary'> Next </Button>
                         </Link>
                     </Col>
                 </Row>

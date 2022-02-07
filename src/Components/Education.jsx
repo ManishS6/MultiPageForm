@@ -87,10 +87,11 @@ export default function Address(){
                 </Row>
                 <Row>
                     <Col style={{display: 'flex', justifyContent: 'center'}}>
-                        <h5>Where did you goto College?</h5>
+                        <h5>Where did you study?</h5>
                     </Col>
                 </Row>
                 <br />
+                {/* add more button logic */}
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formCollegeName">
@@ -139,7 +140,7 @@ export default function Address(){
                             <Button variant='warning'> Back </Button>
                         </Link>
                     </Col>
-                    <Col>
+                    {/* <Col>
                         <a style={stylish} disabled href=" ">
                         <span></span>
                         <span></span>
@@ -147,8 +148,9 @@ export default function Address(){
                         <span></span>
                         Submit
                         </a>
-                    </Col>
+                    </Col> */}
                     <Col style={{display: 'flex', justifyContent: 'end'}}>
+                        <Button variant='success' style={{marginRight:'2rem'}}>Add More</Button>
                         <Link to='/page/job'>
                             <Button variant='primary'> Next </Button>
                         </Link>
