@@ -1,11 +1,13 @@
 import {Link} from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import { useContext } from 'react';
 import { FormContext } from './FormContext';
 import '../App.css'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import {Container,Row,Col} from 'react-bootstrap';
+import { FaTrash } from 'react-icons/fa'
+import Card from 'react-bootstrap/Card'
 
 export default function Address(){
     const stylish = {
@@ -27,7 +29,7 @@ export default function Address(){
             ...updatedForm
         }))
     },[])
-    const [{collegeName='',collegeLocation='',degree='',stream='',degreeStart='',degreeEnd=''},setForm] = useContext(FormContext)
+    const [{collegeName='',collegeLocation='',degree='',stream='',degreeStart='',degreeEnd='',Edu=[]},setForm] = useContext(FormContext)
     const updateCN = e => { 
         const val=e.target.value;
         var updatedForm = {collegeName: val}
@@ -76,6 +78,38 @@ export default function Address(){
             ...updatedForm
         }))
     }
+    const removeEdu = i => {
+        setForm( form => ({
+            ...form,
+            ...{Edu:Edu.splice(i,1)}
+        }))
+    }
+    const nameRef = useRef(null);
+    const locationRef = useRef(null);
+    const degreeRef = useRef(null);
+    const streamRef = useRef(null);
+    const startRef = useRef(null);
+    const endRef = useRef(null);
+    const MoreEdu = () => {
+        var edu = {
+            "institute":collegeName,
+            "location":collegeLocation,
+            "degree":degree,
+            "stream":stream,
+            "start":degreeStart,
+            "end":degreeEnd
+        }
+        setForm(form =>({
+            ...form,
+            ...{Edu:Edu.concat(edu)}
+        }))
+        nameRef.current.value = null;
+        locationRef.current.value = null;
+        degreeRef.current.value = null;
+        streamRef.current.value = null;
+        startRef.current.value = null;
+        endRef.current.value = null;
+    }
     return(
         <div className='Education left'>
             <Form>
@@ -90,19 +124,36 @@ export default function Address(){
                         <h5>Where did you study?</h5>
                     </Col>
                 </Row>
-                <br />
-                {/* add more button logic */}
+                <hr />
+                {[...Edu].map((edu,i)=>(
+                    <Card key={i} style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+                        <Col xs={5}>
+                            <h4>{edu.institute+" "+edu.location}</h4>
+                        </Col>
+                        <Col xs={5}>
+                            <h3>{edu.degree}</h3>
+                        </Col>
+                        <Col xs={2}>
+                            <FaTrash 
+                                        color='red'
+                                        size={30}
+                                        onClick={(i) => removeEdu(i)}
+                            />
+                        </Col>
+                    </Card>
+                ))}
+                {Edu.length!==0 && <hr/>}
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formCollegeName">
                             <Form.Label>College Name</Form.Label>
-                            <Form.Control type="text" value={collegeName} onChange={updateCN} placeholder="VIT" maxLength={10}/>
+                            <Form.Control type="text" ref={nameRef} onChange={updateCN} placeholder="VIT" />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formCollegeLocation">
                             <Form.Label>College Location</Form.Label>
-                            <Form.Control type="text" value={collegeLocation} onChange={updateCL} placeholder="Chennai" maxLength={10}/>
+                            <Form.Control type="text" ref={locationRef} onChange={updateCL} placeholder="Chennai" />
                         </Form.Group>    
                     </Col>
                 </Row>
@@ -110,7 +161,7 @@ export default function Address(){
                     <Col xs={6}>
                         <Form.Group className="mb-3" controlId="formDegree">
                             <Form.Label>Degree Type</Form.Label>
-                            <Form.Control type="text" value={degree} onChange={updateD} placeholder="Bachelor's of Technology" maxLength={10}/>
+                            <Form.Control type="text" ref={degreeRef} onChange={updateD} placeholder="Bachelor's of Technology" />
                         </Form.Group>  
                     </Col>
                 </Row>
@@ -118,19 +169,19 @@ export default function Address(){
                     <Col xs={6}>
                         <Form.Group className="mb-3" controlId="formStream">
                             <Form.Label>Stream</Form.Label>
-                            <Form.Control type="text" value={stream} onChange={updateS} placeholder="CSE" maxLength={10}/>
+                            <Form.Control type="text" ref={streamRef} onChange={updateS} placeholder="CSE" />
                         </Form.Group>  
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formDegreeStart">
                             <Form.Label>Start Date</Form.Label>
-                            <Form.Control type="text" value={degreeStart} onChange={updateDS} placeholder="01/08/2019" maxLength={10}/>
+                            <Form.Control type="text" ref={startRef} onChange={updateDS} placeholder="01/08/2019" />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formDegreeEnd">
                             <Form.Label>Graduation Date</Form.Label>
-                            <Form.Control type="text" value={degreeEnd} onChange={updateDE} placeholder="31/03/2023" maxLength={10}/>
+                            <Form.Control type="text" ref={endRef} onChange={updateDE} placeholder="31/03/2023" />
                         </Form.Group>    
                     </Col>
                 </Row>
@@ -140,17 +191,8 @@ export default function Address(){
                             <Button variant='warning'> Back </Button>
                         </Link>
                     </Col>
-                    {/* <Col>
-                        <a style={stylish} disabled href=" ">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Submit
-                        </a>
-                    </Col> */}
                     <Col style={{display: 'flex', justifyContent: 'end'}}>
-                        <Button variant='success' style={{marginRight:'2rem'}}>Add More</Button>
+                        <Button onClick={MoreEdu} variant='success' style={{marginRight:'2rem'}}>Add More</Button>
                         <Link to='/page/job'>
                             <Button variant='primary'> Next </Button>
                         </Link>

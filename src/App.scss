@@ -28,6 +28,7 @@ input[type="radio"] {
   display: flex;
   flex-direction: row;
   justify-content: stretch;
+  width: 100%;
   .left {
     flex: 1;
     height: 100vh;
@@ -40,7 +41,7 @@ input[type="radio"] {
   
   .right {
     flex: 1;
-
+    width: 100%;
     .right-title{
         letter-spacing: 1px;
         text-transform: uppercase;

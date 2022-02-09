@@ -15,14 +15,19 @@ export default function Summary(){
             ...updatedForm
         }))
     },[])
-    const [{Summary=[]}, setForm] = useContext(FormContext)
+    const [{Summary=[],about=""}, setForm] = useContext(FormContext)
     const items = [
         { name: 'I am Honest' },
         { name: 'I am Trustworthy' },
         { name: 'I respect everyone\' opinion' },
         { name: 'I can work in a team' }
     ]
-    
+    const convert = (e) => {
+        setForm( form => ({
+            ...form,
+            ...{about:e.target.value}
+        }))
+    }
     const  handleChange = useCallback( (n)=> {
         let index = Summary.indexOf(n.name);
         if (index === -1) {
@@ -56,9 +61,10 @@ export default function Summary(){
                         <h5>What do you want to be written inside the About section?</h5>
                     </Col>
                 </Row>
-                <br />
+                <hr />
                 <Row style={{border:'2px solid black',margin:'2px'}}>
-                    <Col>
+                    <textarea onChange={convert} name="about" cols="30" rows="10" placeholder='Type Markdown here'/>
+                    {/* <Col>
                         <List style={{display:'flex',flexDirection:'column',width:'98%'}}>
                             {items.map(n => {
                             return (
@@ -79,7 +85,7 @@ export default function Summary(){
                     </Col>
                     <Col>
                         <TextEditor />
-                    </Col>
+                    </Col> */}
                 </Row>
                 <br />
                 <Row>

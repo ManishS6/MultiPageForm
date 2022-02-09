@@ -6,18 +6,11 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import {Container,Row,Col} from 'react-bootstrap';
 import '../App.css';
-import Header from './Header';
 import avatar from './avatar.jpg'
 import UploadForm from './UploadForm';
 export default function Name(){
     var [{firstName='',lastName='',profession='',city='',state='',zip='',email='',phone='',isFilePicked=false}, setForm] = useContext(FormContext)
     const [selectedFile, setSelectedFile] = useState(null);
-    // const [isFilePicked, setIsFilePicked] = useState(false);
-    // const changeHandler = e => {
-    //     setSelectedFile(e.target.files[0]);
-    //     localStorage.setItem('avatar',selectedFile);
-    //     setIsFilePicked(true);
-    // }
     
     const handleSubmission = e => {
         e.preventDefault()
@@ -154,9 +147,8 @@ export default function Name(){
                                         :
                                         localStorage.getItem('recent-image')||selectedFile
                                         } 
-                                    alt="Profile" 
-                                    height={200} 
-                                    style={{width:'80%',borderRadius:"50%",border:'8px solid #002333'}}
+                                    alt="Profile"
+                                    style={{width:'60%',borderRadius:"50%",border:'8px solid #002333'}}
                                     />
                                 </div>
                             </Row>

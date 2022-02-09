@@ -17,7 +17,7 @@ export default function Skills() {
             ...form,
             ...updatedForm
         }))
-    },[setForm])
+    },[])
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [skill, setSkill] = useState(null);
@@ -56,6 +56,7 @@ export default function Skills() {
                         <h5>What skills do you have?</h5>
                     </Col>
                 </Row>
+                <hr />
                 <Row>
                     <div className='stars' style={{display:'flex',alignItems:'center'}}>
                         <Col xs={6}>
